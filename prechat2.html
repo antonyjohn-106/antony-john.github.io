@@ -18,11 +18,11 @@
         <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
         <script type='text/javascript'>
             var initESW = function(gslbBaseURL) {
-                var getNavigatorLanguage = (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en-GB';
+                var getNavigatorLanguage = (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en- GB';
                 console.log('Origin === '+ getNavigatorLanguage + navigator.languages);
 
                 embedded_svc.settings.displayHelpButton = true; //Or false
-                embedded_svc.settings.language = getNavigatorLanguage; //For example, enter 'en' or 'en-US'
+                embedded_svc.settings.language = 'it'; //For example, enter 'en' or 'en-US'
 
                 //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
                 //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
