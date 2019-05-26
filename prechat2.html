@@ -31,10 +31,13 @@
                 //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
 
                 // Settings for Live Agent
-                //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-                    // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-                    // Returns a valid button ID.
-                //};
+                embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+                
+                    var CASE_REASON_PICKLIST = prechatFormData[3];
+                    console.log('JSON ==> ' + JSON.stringify(prechatFormData[3]));
+                    //console.log('Choosen Button -text ' + CASE_REASON_PICKLIST.name + ' = value ==' + CASE_REASON_PICKLIST.value);
+                    return CASE_REASON_PICKLIST.value;
+                };
                 //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
                 //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
                 //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
