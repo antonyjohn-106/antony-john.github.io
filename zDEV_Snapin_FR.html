@@ -31,7 +31,7 @@
                 embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
                 
                     var CASE_REASON_PICKLIST = prechatFormData[3];
-                    console.log('JSON ==> ' + JSON.stringify(prechatFormData[3]));
+                    console.log('JSON ==> ' + JSON.stringify(prechatFormData));
                     //console.log('Choosen Button -text ' + CASE_REASON_PICKLIST.name + ' = value ==' + CASE_REASON_PICKLIST.value);
                     return CASE_REASON_PICKLIST.value;
                 };
