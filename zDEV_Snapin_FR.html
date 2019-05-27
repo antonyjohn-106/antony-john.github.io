@@ -31,9 +31,10 @@
                 embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
                 
                     var CASE_REASON_PICKLIST = prechatFormData[3];
-                    console.log('JSON ==> ' + JSON.stringify(prechatFormData));
-                    console.log('Choosen Button -text ' + CASE_REASON_PICKLIST.name + ' = value ==' + CASE_REASON_PICKLIST.value);
-                    return CASE_REASON_PICKLIST.value;
+                    console.log('JSON ==> ' + JSON.stringify(prechatFormData[3]));
+                    console.log('Choosen Button -text ' + CASE_REASON_PICKLIST.name + ' = value ==' + CASE_REASON_PICKLIST.value.substringafter('_'));
+                    var buttonId =  CASE_REASON_PICKLIST.value.substringAfter('_');
+                    return buttonId;
                 };
                 //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
                 //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
@@ -52,6 +53,12 @@
                   {
                     "label": "locale",
                     "value": "fr_FR",
+                    "transcriptFields": [],
+                    "displayToAgent": true
+                  },
+                  {
+                    "label": "button",
+                    "value": "1234",
                     "transcriptFields": [],
                     "displayToAgent": true
                   }
