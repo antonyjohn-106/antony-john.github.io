@@ -32,8 +32,10 @@
                 
                     var CASE_REASON_PICKLIST = prechatFormData[3];
                     console.log('JSON ==> ' + JSON.stringify(prechatFormData[3]));
-                    console.log('Choosen Button -text ' + CASE_REASON_PICKLIST.name + ' = value ==' + CASE_REASON_PICKLIST.value.substringafter('_'));
-                    var buttonId =  CASE_REASON_PICKLIST.value.substringAfter('_');
+                    //console.log('Choosen Button -text ' + CASE_REASON_PICKLIST.name + ' = value ==' + CASE_REASON_PICKLIST.value.substringafter('_'));
+                    var buttonId  = CASE_REASON_PICKLIST.substring(CASE_REASON_PICKLIST.indexOf('_')+1);
+                    var casereason = CASE_REASON_PICKLIST.substring(0,CASE_REASON_PICKLIST.indexOf('_'));
+                    prechatFormData[3].value = casereason;
                     return buttonId;
                 };
                 //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
