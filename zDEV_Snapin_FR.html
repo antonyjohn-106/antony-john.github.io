@@ -30,12 +30,13 @@
                 // Settings for Live Agent
                 embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
                 
-                    var CASE_REASON_PICKLIST = prechatFormData[3];
+                    var CASE_REASON_PICKLIST = prechatFormData[3].value;
                     console.log('JSON ==> ' + JSON.stringify(prechatFormData[3]));
                     //console.log('Choosen Button -text ' + CASE_REASON_PICKLIST.name + ' = value ==' + CASE_REASON_PICKLIST.value.substringafter('_'));
                     var buttonId  = CASE_REASON_PICKLIST.substring(CASE_REASON_PICKLIST.indexOf('_')+1);
                     var casereason = CASE_REASON_PICKLIST.substring(0,CASE_REASON_PICKLIST.indexOf('_'));
                     prechatFormData[3].value = casereason;
+                    console.log('button ==>' + buttonId + ' casep ==>' + prechatFormData[3].value + ' case ==>' + casereason);
                     return buttonId;
                 };
                 //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
@@ -55,12 +56,6 @@
                   {
                     "label": "locale",
                     "value": "fr_FR",
-                    "transcriptFields": [],
-                    "displayToAgent": true
-                  },
-                  {
-                    "label": "button",
-                    "value": "1234",
                     "transcriptFields": [],
                     "displayToAgent": true
                   }
