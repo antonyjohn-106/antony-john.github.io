@@ -29,14 +29,12 @@
 
                 // Settings for Live Agent
                 embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-                
                     var CASE_REASON_PICKLIST = prechatFormData[3].value;
-                    console.log('JSON ==> ' + JSON.stringify(prechatFormData[3]));
-                    //console.log('Choosen Button -text ' + CASE_REASON_PICKLIST.name + ' = value ==' + CASE_REASON_PICKLIST.value.substringafter('_'));
-                    var buttonId  = CASE_REASON_PICKLIST.substring(CASE_REASON_PICKLIST.indexOf('_')+1);
-                    var casereason = CASE_REASON_PICKLIST.substring(0,CASE_REASON_PICKLIST.indexOf('_'));
+                    var SEPARATOR = '_';
+                    //fetch the case reason and the button ID from the selected case reason's value, split by the separator "_"
+                    var buttonId  = CASE_REASON_PICKLIST.substring(CASE_REASON_PICKLIST.indexOf(SEPARATOR)+1);
+                    var casereason = CASE_REASON_PICKLIST.substring(0,CASE_REASON_PICKLIST.indexOf(SEPARATOR));
                     prechatFormData[3].value = casereason;
-                    console.log('button ==>' + buttonId + ' casep ==>' + prechatFormData[3].value + ' case ==>' + casereason);
                     return buttonId;
                 };
                 //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
