@@ -24,12 +24,21 @@
         
                 // Settings for Chat
                 embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-                    var CASE_REASON_PICKLIST = prechatFormData[3].value;
-                    var SEPARATOR = '_';
-                    //fetch the case reason and the button ID from the selected case reason's value, split by the separator "_"
-                    var buttonId  = CASE_REASON_PICKLIST.substring(CASE_REASON_PICKLIST.indexOf(SEPARATOR)+1);
-                    var casereason = CASE_REASON_PICKLIST.substring(0,CASE_REASON_PICKLIST.indexOf(SEPARATOR));
-                    prechatFormData[3].value = casereason;
+                    var buttonId = '';
+                    for (i=0; i<prechatFormData.length; i++) {
+                        console.log("data ==> " + prechatFormData[i].key + " " + prechatFormData[i].value);
+                        if (prechatFormData[i].key == "Case Reason" || prechatFormData[i].key == "Subject") {
+                            var FORM_DATA = prechatFormData[i].value;
+                            var SEPARATOR = '_';
+                            
+                            //fetch the prechat form data which is formed in the helper
+                            //It will be of the format <<casereason>>_<<buttonID>> or <<subject>>_<<buttonID>> 
+                            //from the value, we will split using the separator "_"
+                            buttonId  = FORM_DATA.substring(FORM_DATA.indexOf(SEPARATOR)+1);
+                            var casereaonorsubject = FORM_DATA.substring(0,FORM_DATA.indexOf(SEPARATOR));
+                            prechatFormData[i].value = casereaonorsubject;
+                        }
+                    }           
                     return buttonId;
                 };
                 //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
@@ -91,13 +100,6 @@
                     "showOnCreate": true,
                     "saveToTranscript": "Case",
                     "entityFieldMaps": [
-                    {
-                        "isExactMatch": false,
-                        "fieldName": "Status",
-                        "doCreate": true,
-                        "doFind": false,
-                        "label": "Status"
-                    }, 
                     {
                         "isExactMatch": false,
                         "fieldName": "Origin",
