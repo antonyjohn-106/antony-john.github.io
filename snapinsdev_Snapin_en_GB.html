@@ -35,8 +35,8 @@
                             //It will be of the format <<casereason>>_<<buttonID>> or <<subject>>_<<buttonID>> 
                             //from the value, we will split using the separator "_"
                             buttonId  = FORM_DATA.substring(FORM_DATA.indexOf(SEPARATOR)+1);
-                            var casereaonorsubject = FORM_DATA.substring(0,FORM_DATA.indexOf(SEPARATOR));
-                            prechatFormData[i].value = casereaonorsubject;
+                            var casereasonorsubject = FORM_DATA.substring(0,FORM_DATA.indexOf(SEPARATOR));
+                            prechatFormData[i].value = casereasonorsubject;
                         }
                     }           
                     return buttonId;
