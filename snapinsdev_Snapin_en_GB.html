@@ -27,7 +27,7 @@
                     var buttonId = '';
                     for (i=0; i<prechatFormData.length; i++) {
                         console.log("data ==> " + JSON.stringify(prechatFormData[i],null) + " " + prechatFormData[i].value);
-                        if (prechatFormData[i].key == "Case Reason" || prechatFormData[i].key == "Subject") {
+                        if (prechatFormData[i].label == "Case Reason" || prechatFormData[i].label == "Subject") {
                             var FORM_DATA = prechatFormData[i].value;
                             var SEPARATOR = '_';
                             
