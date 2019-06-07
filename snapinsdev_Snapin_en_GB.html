@@ -26,7 +26,7 @@
                 embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
                     var buttonId = '';
                     for (i=0; i<prechatFormData.length; i++) {
-                        console.log("data ==> " + prechatFormData[i] + " " + prechatFormData[i].value);
+                        console.log("data ==> " + JSON.stringify(prechatFormData[i],null) + " " + prechatFormData[i].value);
                         if (prechatFormData[i].key == "Case Reason" || prechatFormData[i].key == "Subject") {
                             var FORM_DATA = prechatFormData[i].value;
                             var SEPARATOR = '_';
