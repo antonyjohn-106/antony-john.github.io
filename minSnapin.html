@@ -86,7 +86,7 @@
                         console.log(this.responseText);
                         var result = this.responseText.search('"isAvailable":true');
                         console.log("res -->" + result);
-                        if (result) {
+                        if (result != -1) {
                             embedded_svc.settings.displayHelpButton = true; //Or false
 
                         } else {
