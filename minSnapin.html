@@ -85,7 +85,13 @@
                     if (this.readyState == 4 && this.status == 200) {
                         console.log(this.responseText);
                         var result = this.responseText.search('"isAvailable":true');
-                        console.log("obj ==> " + result);
+                        if (result) {
+                            embedded_svc.settings.displayHelpButton = true; //Or false
+
+                        } else {
+                            embedded_svc.settings.displayHelpButton = false; //Or false
+
+                        }
                     }
                 };
                 //https://d.la1-c2cs-frf.salesforceliveagent.com/chat/rest/Visitor/Availability.jsonp?Availability.PREFIX=Visitor&Availability.ids=[57320000000fxSk]&callback=embedded_svc.liveAgentAPI.connection.handlePing&deployment_id=57220000000fxSa&org_id=00D4E0000009Gs3&version=45
