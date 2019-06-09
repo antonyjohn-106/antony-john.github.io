@@ -79,32 +79,9 @@
         </script>
         <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
         <script type='text/javascript'>
+           
+
             var initESW = function(gslbBaseURL) {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        console.log(this.responseText);
-                        var result = this.responseText.search('"isAvailable":true');
-                        console.log("res -->" + result);
-                        if (result != -1) {
-                            embedded_svc.settings.displayHelpButton = true; //Or false
-
-                        } else {
-                            embedded_svc.settings.displayHelpButton = false; //Or false
-
-                        }
-                    }
-                };                  
-                //https://d.la1-c2cs-frf.salesforceliveagent.com/chat/rest/Visitor/Availability.jsonp?Availability.PREFIX=Visitor&Availability.ids=[57320000000fxSk]&callback=embedded_svc.liveAgentAPI.connection.handlePing&deployment_id=57220000000fxSa&org_id=00D4E0000009Gs3&version=45
-                xhttp.open("GET", "https://d.la1-c2cs-frf.salesforceliveagent.com/chat/rest/Visitor/Availability.jsonp?sid=undefined&r=550&Availability.prefix=Visitor&Availability.ids=[57320000000fxSk]&callback=embedded_svc.liveAgentAPI.connection.handlePing&deployment_id=57220000000fxSa&org_id=00D4E0000009Gs3&version=36", true);
-                //xhttp.setRequestHeader("Content-Type", "Bearer " + "application/json");
-                //xhttp.setRequestHeader("X-LIVEAGENT-API-VERSION", "30");
-
-                xhttp.timeout = 200;             
-                xhttp.send(null);
-
-
-
                 //embedded_svc.settings.displayHelpButton = true; //Or false
                 embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
                 embedded_svc.addEventHandler("onHelpButtonClick", function(data) {
@@ -159,17 +136,47 @@
                     }
                 );
             };
-        
-            if (!window.embedded_svc) {
-                var s = document.createElement('script');
-                s.setAttribute('src', 'https://connectedhome--SNAPINSDEV.cs83.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-                s.onload = function() {
-                    initESW(null);
-                };
-                document.body.appendChild(s);
-            } else {
-                initESW('https://service.force.com');
-            }
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    var result = this.responseText.search('"isAvailable":true');
+                    console.log("res -->" + result);
+                    if (result != -1) {
+                        if (!window.embedded_svc) {
+                            var s = document.createElement('script');
+                            s.setAttribute('src', 'https://connectedhome--SNAPINSDEV.cs83.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+                            s.onload = function() {
+                                embedded_svc.settings.displayHelpButton = true; //Or false
+                                initESW(null);
+                            };
+                            document.body.appendChild(s);
+                        } else {
+                            initESW('https://service.force.com');
+                        }
+                    } else {
+                        if (!window.embedded_svc) {
+                            var s = document.createElement('script');
+                            s.setAttribute('src', 'https://connectedhome--SNAPINSDEV.cs83.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+                            s.onload = function() {
+                                embedded_svc.settings.displayHelpButton = false; //Or false
+                                initESW(null);
+                            };
+                            document.body.appendChild(s);
+                        } else {
+                            initESW('https://service.force.com');
+                        }
+                    }
+                }
+            };                  
+            //https://d.la1-c2cs-frf.salesforceliveagent.com/chat/rest/Visitor/Availability.jsonp?Availability.PREFIX=Visitor&Availability.ids=[57320000000fxSk]&callback=embedded_svc.liveAgentAPI.connection.handlePing&deployment_id=57220000000fxSa&org_id=00D4E0000009Gs3&version=45
+            xhttp.open("GET", "https://d.la1-c2cs-frf.salesforceliveagent.com/chat/rest/Visitor/Availability.jsonp?sid=undefined&r=550&Availability.prefix=Visitor&Availability.ids=[57320000000fxSk]&callback=embedded_svc.liveAgentAPI.connection.handlePing&deployment_id=57220000000fxSa&org_id=00D4E0000009Gs3&version=36", true);
+            //xhttp.setRequestHeader("Content-Type", "Bearer " + "application/json");
+            //xhttp.setRequestHeader("X-LIVEAGENT-API-VERSION", "30");
+
+            xhttp.timeout = 200;             
+            xhttp.send(null);         
+            
         </script>
     </body>
 </html>
