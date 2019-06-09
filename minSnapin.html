@@ -8,79 +8,9 @@
             .embeddedServiceHelpButton .helpButton .uiButton:focus {
                 outline: 1px solid #005290;
             }
-            .THIS {
-                position: fixed;
-                left: auto;
-                bottom: 0;
-                right: 12px;
-                margin: 0;
-                 min-width: 12em;
-                max-width: 14em;
-                height: 46px;
-                width: 192px;
-                max-height: 100%;
-                border-radius: 8px 8px 0 0;
-                text-align: center;
-                text-decoration: none;
-                display: flex;
-                flex-direction: center;
-            justify-content: center;
-            box-shadow: none;
-                pointer-events: all;
-                overflow: hidden;
-                background-color: rgb(0, 112, 210);
-                font-size: 16px;
-            }
-            
-            .THIS.minimizedContainer:focus,
-            .THIS.minimizedContainer:hover {
-            color: rgb(255, 255, 255);
-            text-decoration: underline;
-            outline: none;
-            background-color: rgb(0, 95, 178);
-            box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.5);
-            }
-            
-            .THIS .messageContent {
-                display: block;
-                padding: 0 8px;
-                height: 100%;
-                color: rgb(255, 255, 255);
-            }
         </style>
-        <script type='text/javascript'>
-            // Select the node that will be observed for mutations
-            var targetNode = document.getElementById('embedded_svc');
-
-            // Options for the observer (which mutations to observe)
-            var config = { attributes: true, childList: true, subtree: true };
-
-            // Callback function to execute when mutations are observed
-            var callback = function(mutationsList, observer) {
-                for(var mutation of mutationsList) {
-                    if (mutation.type == 'childList') {
-                        console.log('A child node has been added or removed.');
-                    }
-                    else if (mutation.type == 'attributes') {
-                        console.log('The ' + mutation.attributeName + ' attribute was modified.');
-                    }
-                }
-            };
-
-            // Create an observer instance linked to the callback function
-            var observer = new MutationObserver(callback);
-
-            // Start observing the target node for configured mutations
-            observer.observe(targetNode, config);
-
-            // Later, you can stop observing
-            observer.disconnect();
-        
-        </script>
         <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
         <script type='text/javascript'>
-           
-
             var initESW = function(gslbBaseURL) {
                 //embedded_svc.settings.displayHelpButton = true; //Or false
                 embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
@@ -136,47 +66,37 @@
                     }
                 );
             };
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
-                    var result = this.responseText.search('"isAvailable":true');
-                    console.log("res -->" + result);
-                    if (result != -1) {
-                        if (!window.embedded_svc) {
-                            var s = document.createElement('script');
-                            s.setAttribute('src', 'https://connectedhome--SNAPINSDEV.cs83.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-                            s.onload = function() {
-                                embedded_svc.settings.displayHelpButton = true; //Or false
-                                initESW(null);
-                            };
-                            document.body.appendChild(s);
+     
+            if (!window.embedded_svc) {
+                var s = document.createElement('script');
+                s.setAttribute('src', 'https://connectedhome--SNAPINSDEV.cs83.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+                s.onload = function() {
+                    initESW(null);
+                };
+                document.body.appendChild(s);
+            } else {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log(this.responseText);
+                        var result = this.responseText.search('"isAvailable":true');
+                        console.log("res -->" + result);
+                        if (result != -1) {
+                            embedded_svc.settings.displayHelpButton = true; //Or false
                         } else {
-                            initESW('https://service.force.com');
-                        }
-                    } else {
-                        if (!window.embedded_svc) {
-                            var s = document.createElement('script');
-                            s.setAttribute('src', 'https://connectedhome--SNAPINSDEV.cs83.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-                            s.onload = function() {
-                                embedded_svc.settings.displayHelpButton = false; //Or false
-                                initESW(null);
-                            };
-                            document.body.appendChild(s);
-                        } else {
-                            initESW('https://service.force.com');
+                            embedded_svc.settings.displayHelpButton = false; //Or false 
                         }
                     }
-                }
-            };                  
-            //https://d.la1-c2cs-frf.salesforceliveagent.com/chat/rest/Visitor/Availability.jsonp?Availability.PREFIX=Visitor&Availability.ids=[57320000000fxSk]&callback=embedded_svc.liveAgentAPI.connection.handlePing&deployment_id=57220000000fxSa&org_id=00D4E0000009Gs3&version=45
-            xhttp.open("GET", "https://d.la1-c2cs-frf.salesforceliveagent.com/chat/rest/Visitor/Availability.jsonp?sid=undefined&r=550&Availability.prefix=Visitor&Availability.ids=[57320000000fxSk]&callback=embedded_svc.liveAgentAPI.connection.handlePing&deployment_id=57220000000fxSa&org_id=00D4E0000009Gs3&version=36", true);
-            //xhttp.setRequestHeader("Content-Type", "Bearer " + "application/json");
-            //xhttp.setRequestHeader("X-LIVEAGENT-API-VERSION", "30");
-
-            xhttp.timeout = 200;             
-            xhttp.send(null);         
-            
+                };                  
+                //https://d.la1-c2cs-frf.salesforceliveagent.com/chat/rest/Visitor/Availability.jsonp?Availability.PREFIX=Visitor&Availability.ids=[57320000000fxSk]&callback=embedded_svc.liveAgentAPI.connection.handlePing&deployment_id=57220000000fxSa&org_id=00D4E0000009Gs3&version=45
+                xhttp.open("GET", "https://d.la1-c2cs-frf.salesforceliveagent.com/chat/rest/Visitor/Availability.jsonp?sid=undefined&r=550&Availability.prefix=Visitor&Availability.ids=[57320000000fxSk]&callback=embedded_svc.liveAgentAPI.connection.handlePing&deployment_id=57220000000fxSa&org_id=00D4E0000009Gs3&version=36", true);
+                //xhttp.setRequestHeader("Content-Type", "Bearer " + "application/json");
+                //xhttp.setRequestHeader("X-LIVEAGENT-API-VERSION", "30");
+    
+                xhttp.timeout = 200;             
+                xhttp.send(null);                    
+                initESW('https://service.force.com');
+            }            
         </script>
     </body>
 </html>
