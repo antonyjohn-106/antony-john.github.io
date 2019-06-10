@@ -8,6 +8,10 @@
             .embeddedServiceHelpButton .helpButton .uiButton:focus {
                 outline: 1px solid #005290;
             }
+            .embeddedServiceHelpButton .helpButton .uiButton.helpButtonDisabled { 
+                display: none; 
+            }
+
         </style>
         <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
         <script type='text/javascript'>
@@ -75,7 +79,7 @@
                 };
                 document.body.appendChild(s);
             } else {
-                var xhttp = new XMLHttpRequest();
+                /*var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         console.log(this.responseText);
@@ -94,7 +98,7 @@
                 //xhttp.setRequestHeader("X-LIVEAGENT-API-VERSION", "30");
     
                 xhttp.timeout = 200;             
-                xhttp.send(null);                    
+                xhttp.send(null);          */          
                 initESW('https://service.force.com');
             }            
         </script>
