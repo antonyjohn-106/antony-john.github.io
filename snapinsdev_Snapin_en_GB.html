@@ -25,18 +25,12 @@
                 // Settings for Chat
                 embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
                     var buttonId = '';
+                    //This is set in helper of the Prechat Lightning component
+                    var BTN_ID_LABEL = 'Snapins Button Routing ID'; 
                     for (i=0; i<prechatFormData.length; i++) {
                         console.log("data ==> " + JSON.stringify(prechatFormData[i],null) + " " + prechatFormData[i].value);
-                        if (prechatFormData[i].label == "Case Reason" || prechatFormData[i].label == "Subject") {
-                            var FORM_DATA = prechatFormData[i].value;
-                            var SEPARATOR = '_';
-                            
-                            //fetch the prechat form data which is formed in the helper of the prechat lightning component
-                            //It will be of the format <<casereason>>_<<buttonID>> or <<subject>>_<<buttonID>> 
-                            //from the value, we will split using the separator "_"
-                            buttonId  = FORM_DATA.substring(FORM_DATA.indexOf(SEPARATOR)+1);
-                            var casereasonorsubject = FORM_DATA.substring(0,FORM_DATA.indexOf(SEPARATOR));
-                            prechatFormData[i].value = casereasonorsubject;
+                        if (prechatFormData[i].label == BTNID_LABEL) {
+                            buttonId = prechatFormData[i].value;
                         }
                     }           
                     return buttonId;
