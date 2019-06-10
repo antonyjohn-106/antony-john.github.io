@@ -28,19 +28,20 @@
                     //This is set in helper of the Prechat Lightning component
                     var BTN_ID_LABEL = 'Snapins Button Routing ID'; 
                     for (i=0; i<prechatFormData.length; i++) {
+                        
                         console.log("data ==> " + JSON.stringify(prechatFormData[i],null) + " " + prechatFormData[i].value);
-                        if (prechatFormData[i].label == BTNID_LABEL) {
+                        /*if (prechatFormData[i].label == BTNID_LABEL) {
                             buttonId = prechatFormData[i].value;
                         }
-                        console
+                        
                         if (prechatFormData[i].name == 'Reason') {
                             //buttonId = prechatFormData[i].button;
                             console.log('********');
                             console.log('btn ===> ' +  prechatFormData[i].button);
-                        }
+                        }*/
 
                     }           
-                    return buttonId;
+                    return '57320000000fxSk';
                 };
                 //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
                 //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
