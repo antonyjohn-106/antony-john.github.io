@@ -17,7 +17,7 @@
                 embedded_svc.settings.language = 'en'; //For example, enter 'en' or 'en-US'
         
                 embedded_svc.settings.defaultMinimizedText = 'Chat with Hive Helper'; //(Defaults to Chat with an Expert)
-                //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+                embedded_svc.settings.disabledMinimizedText = 'No Hive Agent'; //(Defaults to Agent Offline)
         
                 //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
                 //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
@@ -28,20 +28,11 @@
                     //This is set in helper of the Prechat Lightning component
                     var BTN_ID_LABEL = 'Snapins Button Routing ID'; 
                     for (i=0; i<prechatFormData.length; i++) {
-                        
-                        console.log("data ==> " + JSON.stringify(prechatFormData[i],null) + " " + prechatFormData[i].value);
                         if (prechatFormData[i].label == BTN_ID_LABEL) {
                             buttonId = prechatFormData[i].value;
                         }
-                        
-                        if (prechatFormData[i].name == 'Reason') {
-                            //buttonId = prechatFormData[i].button;
-                            console.log('********');
-                            console.log('btn ===> ' +  prechatFormData[i].button);
-                        }
-
-                    }           
-                    return '57320000000fxSk';
+                    }       
+                    return buttonId;
                 };
                 //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
                 //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
