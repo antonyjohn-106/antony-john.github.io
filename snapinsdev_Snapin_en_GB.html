@@ -52,6 +52,12 @@
                     "value": "en_GB",
                     "transcriptFields": [],
                     "displayToAgent": true
+                },
+                {
+                    "label": "CurrencyIsoCode",
+                    "value": "GBP",
+                    "transcriptFields": [],
+                    "displayToAgent": true
                 }
                 ];
                 
@@ -106,10 +112,18 @@
                         "doCreate": true,
                         "doFind": false,
                         "label": "locale",
+                    },
+                    {
+                        "isExactMatch": false,
+                        "fieldName": "CurrencyIsoCode",
+                        "doCreate": true,
+                        "doFind": false,
+                        "label": "CurrencyIsoCode",
                     }
+
                     ]
                 }
-                ];
+                ];     
                 embedded_svc.init(
                     'https://connectedhome--SNAPINSDEV.cs83.my.salesforce.com',
                     'https://snapinsdev-hive.cs83.force.com/liveagent',
